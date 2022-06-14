@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-cp4d-users
+spec:
+  selector: {}
+  template:
+    metadata:
+      name: create-cp4d-users
+    spec:
+      containers:
+        - name: create-cp4d-users
+          image: quay.io/hollisc/cp4d-cli:1.0.6
+          command: [ "/bin/bash", "-c", "cpd-resources/create-users.sh" ]
+          #command: [ "/bin/bash", "-c", "--" ]
+          #args: [ "while true; do sleep 30; done;" ]
+      securityContext:
+        runAsUser: 1010
+      restartPolicy: Never
