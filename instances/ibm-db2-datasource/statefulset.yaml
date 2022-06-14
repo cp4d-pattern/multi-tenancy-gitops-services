@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: analytics-db2
+  labels:
+    app: analytics-db2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: analytics-db2
+  serviceName: analytics-db2
+  template:
+    metadata:
+      labels:
+        app: analytics-db2
+    spec:
+      serviceAccountName: db2-service-account
+      containers:
+      - name: db2
+        # Quote the image path to avoid issues with a colon in the path
+        image: ibmcom/db2
+        env:
+        - name: LICENSE
+          value: accept
+        - name: DB2INST1_PASSWORD
+          value: password
+        - name: DBNAME
+          value: BLUDB
+        - name: DB2INSTANCE
+          value: db2inst1
+        ports:
+        - containerPort: 50000
+        volumeMounts:
+        - name: db2-pvc
+          mountPath: /database
+        - mountPath: /var/custom/create_schema.sh
+          subPath: create_schema.sh
+          name: create-schema
+        securityContext:
+          privileged: true
+      securityContext:
+        fsGroup: 1000
+      volumes:
+      - name: db2-pvc
+        persistentVolumeClaim:
+          claimName:
+            db2-pvc
+      - name: create-schema
+        configMap:
+            name: create-schema
+            defaultMode: 0777
+            items:
+            - key: create_schema.sh
+              path: create_schema.sh
