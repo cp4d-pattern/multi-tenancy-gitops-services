@@ -1,4 +1,13 @@
 resources:
 - cp4d-users/create-cp4d-users-job.yaml
 
+generatorOptions:
+  disableNameSuffixHash: true
 
+configMapGenerator:
+- name: cp4d-users
+  behavior: create
+  files:
+    - cp4d-users/user-dataengineer.json
+    - cp4d-users/user-datascientist.json
+    - cp4d-users/user-datasteward.json
