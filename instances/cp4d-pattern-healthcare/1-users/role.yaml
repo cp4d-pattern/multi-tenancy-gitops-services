@@ -9,3 +9,9 @@ rules:
       - ''
     resources:
       - secrets
+  - verbs:
+      - '*'
+    apiGroups:
+      - 'zen.cpd.ibm.com'
+    resources:
+      - zenservices
