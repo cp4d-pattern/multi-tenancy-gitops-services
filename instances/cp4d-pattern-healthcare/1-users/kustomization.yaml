@@ -18,3 +18,7 @@ configMapGenerator:
     - user-dataengineer.json
     - user-datascientist.json
     - user-datasteward.json
+- name: cp4d-scripts
+  behavior: create
+  files:
+    - create-users.sh
