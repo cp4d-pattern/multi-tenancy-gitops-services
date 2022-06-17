@@ -21,6 +21,7 @@ spec:
             mountPath: /cpd-scripts
       securityContext:
         runAsUser: 1010
+      serviceAccountName: cpd-demo-sa
       restartPolicy: Never
       volumes:
       - name: cp4d-users
