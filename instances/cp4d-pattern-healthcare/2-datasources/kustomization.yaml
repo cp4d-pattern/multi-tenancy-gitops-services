@@ -6,6 +6,9 @@ resources:
   - ./statefulset.yaml
   - ./scc.yaml
 
+commonAnnotations:
+  argocd.argoproj.io/sync-wave: "252"
+
 generatorOptions:
   disableNameSuffixHash: true
 

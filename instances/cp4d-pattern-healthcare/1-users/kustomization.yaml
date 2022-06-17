@@ -1,0 +1,16 @@
+resources:
+- create-cp4d-users-job.yaml
+
+commonAnnotations:
+  argocd.argoproj.io/sync-wave: "251"
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+- name: cp4d-users
+  behavior: create
+  files:
+    - user-dataengineer.json
+    - user-datascientist.json
+    - user-datasteward.json
