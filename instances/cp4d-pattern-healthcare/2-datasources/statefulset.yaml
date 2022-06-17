@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: analytics-db2
+  name: db2
   labels:
-    app: analytics-db2
+    app: db2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: analytics-db2
-  serviceName: analytics-db2
+      app: db2
+  serviceName: db2
   template:
     metadata:
       labels:
-        app: analytics-db2
+        app: db2
     spec:
       serviceAccountName: db2-service-account
       containers:
