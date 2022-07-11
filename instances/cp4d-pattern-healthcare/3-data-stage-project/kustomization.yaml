@@ -1,0 +1,8 @@
+resources:
+
+
+commonAnnotations:
+  argocd.argoproj.io/sync-wave: "251"
+
+generatorOptions:
+  disableNameSuffixHash: true
