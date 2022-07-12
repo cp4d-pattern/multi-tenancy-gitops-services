@@ -15,6 +15,10 @@ cpdctl config context use admin
 cpdctl config context list
 cpdctl project list
 
-# Import Data Governance artifacts
-curl -k -X POST -H 'cache-control: no-cache' -H "Authorization: Bearer $BEARER_TOKEN" -F "file=@/cpd-resources/data-governance-artifacts.zip" "https://$ZEN_URL/v3/governance_artifact_types/import"
+# Get CP4D instances
+curl -k  -X GET -H 'cache-control: no-cache' -H 'Content-Type: application/json' -H "Authorization: Bearer $BEARER_TOKEN" "https://$ZEN_URL/zen-data/v3/service_instances"
+# Create DV instances
+curl -k -X POST -H 'cache-control: no-cache' -H 'Content-Type: application/json' -H "Authorization: Bearer $BEARER_TOKEN" "https://$ZEN_URL/zen-data/v3/service_instances" -T "/cpd-resources/dv-instance.json"
+
+
 
